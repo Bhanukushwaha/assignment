@@ -1,6 +1,8 @@
 <p style="color: green"><%= notice %></p>
 <a href="/companies/new" class="btn btn-outline-primary">New Record</a>
-<%= current_user.email %>
+<% if current_user.present? %>
+  <%= current_user.email %>
+<% end %>
 <table class="table">
     <thead>   
     <tr><br>
