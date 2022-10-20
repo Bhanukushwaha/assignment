@@ -1,0 +1,46 @@
+<p style="color: green"><%= notice %></p>
+<a href="/companies/new" class="btn btn-outline-primary">New Record</a>
+<%= current_user.email %>
+<table class="table">
+    <thead>   
+    <tr><br>
+      <th></th>
+        <th>Name</th>
+        <th>Country</th>
+        <th>State</th>
+        <th>City</th>
+        <th>Postcode</th>
+        <th>Start_date</th>
+        <th>Active</th>
+      <th colspan="3">Actions</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @company.each do |company, sindex| %>
+      <tr>
+        <td><%#= sindex+1 %></td>
+        <td><%= company.name %></td>
+        <td><%= company&.country&.name %></td>
+        <td><%= company.state&.name %></td>
+        <td><%= company&.city&.name %></td>
+        <td><%= company.postcode %></td>
+        <td><%= company.start_date %></td>
+        <td><%= company.active %></td>
+        <td><%= link_to "Show", company %></td>
+        <td><%= link_to "Edit", edit_company_path(company) %></td>
+        <td><%= button_to 'Destroy', company, method: :delete, data: { confirm: 'Are you sure?' },class: "btn btn-danger" %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<%= will_paginate @company, renderer: BootstrapPagination::Rails %>
+
+<script>
+$(document).ready(function(){
+  $("#stop").click(function(){
+    $(this).hide();
+  });
+});
+</script>
+

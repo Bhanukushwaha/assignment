@@ -1,0 +1,82 @@
+<% if @user.id.present?%>
+  <% path = "/manages/#{@user.id}"%>
+<% else %>
+  <% path=  manages_path %>  
+<% end %>
+
+  <%= form_for( @user, url: path ) do |form| %>
+  <% if user.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(user.errors.count, "error") %> prohibited this user from being saved:</h2>
+
+      <ul>
+        <% user.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>  
+  <div>
+    <%= form.label :first_name %><br>
+    <%= form.text_field :first_name %>
+    </div>
+
+  <div>
+    <%= form.label :last_name %><br>
+    <%= form.text_field :last_name %>
+    </div>
+  <div>
+    <%= form.label :email %><br>
+    <%= form.text_field :email %>
+  </div>
+  <div><br>
+    <%= form.label :company_id %>
+    <%= form.select :company_id, Company.all.map { |c| [c.name, c.id] },{:prompt => "--select Company--"} %>
+    </div><br>
+  <div>
+    <%= form.label :role_id %>
+    <%= form.select :role_id, Role.all.map { |c| [c.name, c.id] },{:prompt => "--select role--"} %>
+    </div><br>
+  <div>
+    <%= form.label :Monthlycharge %><br>
+    <%= form.number_field :monthly_charge %>
+    </div>
+  <div>
+    <%= form.label :start_date %><br>
+    <%= form.date_field :start_date %>
+    </div>
+  <div>
+    <%= form.label :end_date %><br>
+    <%= form.date_field :end_date %>
+    </div><br>
+  <div>
+    <%= form.label :image %>
+    <%= form.file_field :image_id,:onchange => "showimagepreview(this)",:class=>"img_file"  %><br>
+     <img id="imgprvw" style="width: 167px; height: 94px; " />
+    </div><br>
+  <div>
+    <%= form.label :notes %><br>
+    <%= form.cktext_area :notes, ckeditor: { toolbar: 'full'} %>
+    </div>
+  <div>
+    <%= form.label :active %><br>
+    <%= form.check_box :is_active %>
+    </div>
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>
+
+
+  <script>
+  function showimagepreview(input) {
+    if (input.files && input.files[0]) {
+    var filerdr = new FileReader();
+    filerdr.onload = function(e) {
+    $('#imgprvw').attr('src', e.target.result);
+    }
+    filerdr.readAsDataURL(input.files[0]);
+    }
+    $('.image_upload').submit();
+  }
+</script>

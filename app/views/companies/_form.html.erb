@@ -1,0 +1,69 @@
+
+<%= form_with(model: company) do |form| %>
+  <% if company.errors.any? %>
+    <div style="color: red">
+      <!-- <h2><%#= pluralize(company.errors.count, "error") %> prohibited this company from being saved:</h2> -->
+    <div class="create_of_company">
+      <ul>
+        <% company.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <div>
+    <%= form.label :name %><br>
+    <%= form.text_field :name %>
+	  </div>
+  </div>	         
+
+  <div>
+    <%= form.label :country_id %><br>
+    <%= form.select :country_id, Country.all.map { |c| [c.name, c.id] }, {:prompt => "--select country--"}, class: "form-control" %>
+  </div>
+  </div>
+
+  <div>
+    <%= form.label :state_id %><br>
+    <div id="states_based_country">
+      <%= form.select :state_id, State.all.map { |c| [c.name, c.id] }, {:prompt => "--select state--"}, class: "form-control" %>
+    </div>
+  </div>
+
+  <div>
+    <%= form.label :city_id %><br>
+    <div id="cities_based_state">
+      <%= form.select :city_id, City.all.map { |c| [c.name, c.id] }, {:prompt => "--select city--"}, class: "form-control" %>
+    </div>
+  </div>
+
+  <div>
+    <%= form.label :postcode %><br>
+    <%= form.text_field :postcode %>
+  </div>
+
+  <div>
+    <%= form.label :start_date %><br>
+    <%= form.datetime_field :start_date %>
+  </div>
+
+  <div>
+    <%= form.label :active %><br>
+    <%= form.check_box :active %>
+  </div><br>
+  <div>
+    <%= form.submit %>
+  </div>
+  </div>
+<% end %>
+
+<script type="text/javascript">
+  $('#company_country_id').change(function() {
+    var country_id = $('#company_country_id').val();
+    $.ajax({
+        url: "/get_states",
+        type: "GET",
+        data: $.param({ country_id: country_id })
+    })
+});
+</script>

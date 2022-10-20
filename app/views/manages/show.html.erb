@@ -1,0 +1,9 @@
+<p style="color: green"><%= notice %></p>
+<%= render "/manages/user" %>
+
+<div>
+  <%= link_to "Edit this user", edit_manage_url(@user) %> |
+  <%= link_to "Back to users", manages_url %>
+
+  <%= button_to "Destroy this user", @manages, method: :delete %>
+</div>

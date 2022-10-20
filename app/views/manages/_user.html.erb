@@ -1,0 +1,55 @@
+<div class="container">
+<h3>User Record</h3>
+<p>
+  <strong>First Name:</strong>
+  <%= @user.first_name %>
+</p>
+<p>
+  <strong>Last Name:</strong>
+  <%= @user.last_name %>
+</p>
+<p>
+    <strong>Email:</strong>
+    <%= @user.email %>
+  </p>
+
+<p>
+  <strong>Company:</strong>
+<%= @user&.company&.name  %>
+</p>
+
+<p>
+  <strong>Role:</strong>
+  <%= @user&.role&.name %>  
+</p>
+
+<p>
+  <strong>monthlycharge:</strong>
+  <%= @user.monthly_charge %>
+</p>
+
+<p>
+  <strong>Start date:</strong>
+  <%= @user.start_date %>
+</p>
+
+<p>
+  <strong>End date:</strong>
+  <%= @user.end_date %>
+</p>
+
+<p>
+  <strong>Notes:</strong> 
+  <%= raw @user.notes %>
+</p>
+<p>
+  <strong>images:</strong>
+  <%= image_tag @user.profiles.last.image_name.url , style: "width: 167px; height: 94px; margin-top: 8px;" %>
+ 
+<p>
+  <strong>active:</strong>
+  <%= @user.is_active %>
+</p>
+</div>
+
+

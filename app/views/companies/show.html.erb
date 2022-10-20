@@ -1,0 +1,56 @@
+
+<div class="row">
+  <h1>company Record</h1>
+  <div class="ragister">
+    name  :           <%= @company.name %><br>
+    country  :     <%= @company.country.name %><br>
+    state :           <%= @company.state&.name %><br>
+    city  :          <%= @company.city.name %><br>
+    postcode :           <%= @company.postcode %><br>
+    start_date  :          <%= @company.start_date %><br>
+    active:          <%= @company.active%>
+    <div>
+      <%= link_to "Edit this company", edit_company_path(@company) %><br>
+      <%= link_to "Back to companys", companies_path %>
+      <br>    
+      <%= button_to "Destroy this company", @company, method: :delete%>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+
+
+<style >
+  body{
+    background-color: red;
+  }
+  *{
+    margin: 0px;
+    padding: 0px;
+  }
+  .row{
+    width: 410px;
+    height: auto;
+        
+    background-color: white;
+    margin-left: 30%;
+
+  }
+  h1{
+    text-align: center;
+    color: rgba(204, 43, 43, 0.8)
+
+  }
+  .ragister{
+    color: blue;
+    margin-left: 60px;
+    
+    font-size:22px;
+  }
+</style>
