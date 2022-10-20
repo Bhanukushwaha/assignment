@@ -20,7 +20,7 @@ class CountriesController < ApplicationController
   end
 
   # POST /countries or /countries.json
-  def createa
+  def create
     @country = Country.new(country_params)
 
     respond_to do |format|
