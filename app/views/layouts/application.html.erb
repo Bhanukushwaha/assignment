@@ -5,15 +5,15 @@
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
-    <%= javascript_importmap_tags %>
+    <%#= javascript_importmap_tags %>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdn.ckeditor.com/ckeditor5/35.2.1/classic/ckeditor.js"></script>
 
+
   </head>
-  <body>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <body class="container">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light" >
       <a class="navbar-brand" style="color:black" href="#">Home</a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -67,6 +67,30 @@
         </ul>   
       </div>
     </nav> 
+    <%= render 'layouts/flash_messages' %>
     <%= yield %>
   </body>
-</html>
+  </html>
+
+
+
+<style type="text/css">
+body{
+  background-color: lightcyan;
+  background-image: url(<%= asset_path('image2.jpeg')%>);
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+  }
+  .dropdown-menu li:hover{
+  visibility: visible;
+  }
+  .dropdown:hover .dropdown-menu{
+    display: block;
+  }
+  .dropdown-menu > li > a:hover, .dropdown-menu > li > a:focus{
+    background-color: #ffba98;
+  }
+ 
+</style> 

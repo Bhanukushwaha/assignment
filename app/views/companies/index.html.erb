@@ -1,27 +1,66 @@
-<p style="color: green"><%= notice %></p>
+
+
+
+<style>
+* {
+  box-sizing: border-box;
+}
+
+#myInput {
+  background-image: url('/css/searchicon.png');
+  background-position: 10px 10px;
+  background-repeat: no-repeat;
+  width: 70%;
+  border-radius: 10px;
+  font-size: 16px;
+  padding: 12px 20px 8px 40px;
+  border: 1px solid #ddd;
+  margin-bottom: 14px;
+}
+
+#myTable {
+  border-collapse: collapse;
+  width: 100%;
+  border: 1px solid #ddd;
+  font-size: 18px;
+}
+
+#myTable th, #myTable td {
+  text-align: left;
+  padding: 7px;
+}
+
+#myTable tr {
+  border-bottom: 1px solid #ddd;
+}
+
+#myTable tr.header, #myTable tr:hover {
+  background-color: #f1f1f1;
+}
+</style>
+
+<body>
 <a href="/companies/new" class="btn btn-outline-primary">New Record</a>
+<input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for names.." title="Type in a name">
 <% if current_user.present? %>
   <%= current_user.email %>
 <% end %>
-<table class="table">
-    <thead>   
-    <tr><br>
-      <th></th>
-        <th>Name</th>
-        <th>Country</th>
-        <th>State</th>
-        <th>City</th>
-        <th>Postcode</th>
-        <th>Start_date</th>
-        <th>Active</th>
-      <th colspan="3">Actions</th>
-    </tr>
-  </thead>
 
-  <tbody>
-    <% @company.each do |company, sindex| %>
+<table id="myTable">
+  <tr class="header">
+    <th>No</th>
+    <th>Name</th>
+    <th>Country</th>
+    <th>State</th>
+    <th>City</th>
+    <th>Postcode</th>
+    <th>Start_date</th>
+    <th>Active</th>
+    <th colspan="3">Actions</th>
+  </tr>
+  <% @company.each_with_index do |company, sindex| %>
       <tr>
-        <td><%#= sindex+1 %></td>
+        <td><%= sindex+1 %></td>
         <td><%= company.name %></td>
         <td><%= company&.country&.name %></td>
         <td><%= company.state&.name %></td>
@@ -29,20 +68,33 @@
         <td><%= company.postcode %></td>
         <td><%= company.start_date %></td>
         <td><%= company.active %></td>
-        <td><%= link_to "Show", company %></td>
-        <td><%= link_to "Edit", edit_company_path(company) %></td>
+        <td><%= link_to "Show", company,class: "btn btn-secondary btn-sm" %></td>
+        <td><%= link_to "Edit", edit_company_path(company) ,class: "btn btn-success"%></td>
         <td><%= button_to 'Destroy', company, method: :delete, data: { confirm: 'Are you sure?' },class: "btn btn-danger" %></td>
       </tr>
-    <% end %>
-  </tbody>
+      <% end %>
 </table>
-<%= will_paginate @company, renderer: BootstrapPagination::Rails %>
+</body>
 
 <script>
-$(document).ready(function(){
-  $("#stop").click(function(){
-    $(this).hide();
-  });
-});
+function myFunction() {
+  var input, filter, table, tr, td, i, txtValue;
+  input = document.getElementById("myInput");
+  filter = input.value.toUpperCase();
+  table = document.getElementById("myTable");
+  tr = table.getElementsByTagName("tr");
+  for (i = 0; i < tr.length; i++) {
+    td = tr[i].getElementsByTagName("td")[1];
+    if (td) {
+      txtValue = td.textContent || td.innerText;
+      if (txtValue.toUpperCase().indexOf(filter) > -1) {
+        tr[i].style.display = "";
+      } else {
+        tr[i].style.display = "none";
+      }
+    }       
+  }
+}
 </script>
+
 

@@ -3,8 +3,7 @@
 <%= render @city %>
 
 <div>
-  <%= link_to "Edit this city", edit_city_path(@city) %> |
-  <%= link_to "Back to cities", cities_path %>
-
-  <%= button_to "Destroy this city", @city, method: :delete %>
+  <%= link_to "Edit this city", edit_city_path(@city), class: "btn btn-success"  %><br><br>
+  <%= button_to "Destroy city", @city, method: :delete ,class: "btn btn-danger" %><br>
+  <%= link_to "Back to cities", cities_path ,class: "btn btn-secondary"%>
 </div>

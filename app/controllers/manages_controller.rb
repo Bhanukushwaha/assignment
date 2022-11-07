@@ -41,6 +41,13 @@ class ManagesController < ApplicationController
   def update
     respond_to do |format|
       if @user.update(user_params)
+
+        if @user.profiles.last.present?
+          @user.profiles.last.update(:image_name=> params[:user][:image], :imagable_id=> @user.id, :imagable_type=> "User")
+        else
+          @user.profiles.create
+          @user.profiles.last.update(:image_name=> params[:user][:image_id], :imagable_id=> @user.id, :imagable_type=> "User")
+        end
         format.html { redirect_to manage_url(@user), notice: "User was successfully updated." }
         format.json { render :show, status: :ok, location: @user }
       else

@@ -1,15 +1,49 @@
 <p style="color: green"><%= notice %></p>
-
-<h1>States</h1>
-
-<div id="states">
+<table id="myTable">
+  <tr class="header">
+    <th style="width:30%;">Name</th>
+    <th style="width:20%;">Country</th>
+     <th style="width:20%;" colspan="3">Actions</th>
+  </tr>
   <% @states.each do |state| %>
-    <%= render state %>
-    <p>
-      <%= link_to "Show this state", state %>
-    </p>
+  <tr>
+    <td><%= state.name %></td>
+    <td><%= state&.country&.name%></td>
+    <td><%= link_to "Show", state , class:  "btn btn-warning"%></td>
+    <td><%= link_to "Edit", edit_state_path(state),class: "btn btn-primary" %> </td>
+    <td><%= button_to "Destroy", state, method: :delete ,class: "btn btn-danger"%></td>
+  </tr>
   <% end %>
-</div>
+</table> <br>
 
-<%= link_to "New state", new_state_path %>
+<%= link_to "New state", new_state_path, class: "btn btn-outline-primary" %>
 <%= will_paginate @states, renderer: BootstrapPagination::Rails %>
+
+
+
+
+<style>
+* {
+  box-sizing: border-box;
+}
+
+#myTable {
+  border-collapse: collapse;
+  width: 100%;
+  border: 1px solid #ddd;
+  font-size: 18px;
+}
+
+#myTable th, #myTable td {
+  text-align: left;
+  padding: 12px;
+}
+
+#myTable tr {
+  border-bottom: 1px solid #ddd;
+}
+
+#myTable tr.header, #myTable tr:hover {
+  background-color: #f1f1f1;
+}
+</style>

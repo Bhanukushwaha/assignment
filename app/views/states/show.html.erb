@@ -3,8 +3,7 @@
 <%= render @state %>
 
 <div>
-  <%= link_to "Edit this state", edit_state_path(@state) %> |
-  <%= link_to "Back to states", states_path %>
-
-  <%= button_to "Destroy this state", @state, method: :delete %>
+  <%= link_to "Edit state", edit_state_path(@state),class: "btn btn-primary" %><br><br>
+  <%= button_to "Destroy", @state, method: :delete ,class: "btn btn-danger"%><br>
+  <%= link_to "Back", states_path ,class: "btn btn-success"%>
 </div>

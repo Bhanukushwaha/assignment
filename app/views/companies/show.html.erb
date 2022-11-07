@@ -10,10 +10,9 @@
     start_date  :          <%= @company.start_date %><br>
     active:          <%= @company.active%>
     <div>
-      <%= link_to "Edit this company", edit_company_path(@company) %><br>
-      <%= link_to "Back to companys", companies_path %>
-      <br>    
-      <%= button_to "Destroy this company", @company, method: :delete%>
+      <%= link_to "Edit company", edit_company_path(@company),class: "btn btn-success btn-sm" %><br>
+      <%= button_to "Destroy company", @company, method: :delete ,class: "btn btn-danger btn-sm"%>
+      <%= link_to "Back to companys", companies_path,class: "btn btn-warning" %>          
     </div>
   </div>
 </div>
@@ -27,9 +26,6 @@
 
 
 <style >
-  body{
-    background-color: red;
-  }
   *{
     margin: 0px;
     padding: 0px;

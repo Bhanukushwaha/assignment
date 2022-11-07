@@ -7,8 +7,11 @@
           <div class="card-body p-4 p-md-5">
             <h3 class="mb-4 pb-2 pb-md-0 mb-md-5">Registration Form</h3>
             <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-
-             <%= render "devise/shared/error_messages", resource: resource %>
+             <div class="invalid-feedback d-block">
+              <% resource.errors.full_messages.each do |error_message| %>
+                <%= error_message %>.
+              <% end %>
+            </div>
               <div class="row">
               <div class="row">
                 <div class="col-md-6 mb-4 pb-2">
@@ -35,12 +38,9 @@
                   <div class="form-outline">
                     <label class="form-label" for="company_id">Company</label>
                     <%= f.select :company_id, Company.all.map { |c| [c.name, c.id] },{:prompt => "--select company--"},class: "form-control form-control-lg" %>
-
                   </div>
-
                 </div>
               </div>
-
               <div class="row">
                 <div class="col-md-6 mb-4 d-flex align-items-center">
                   <div class="form-outline datepicker w-100">                    
@@ -104,6 +104,9 @@
     </div>
   </div>
 </section>
+
+
+
 
 
 <style type="text/css">

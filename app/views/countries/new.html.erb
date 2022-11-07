@@ -1,9 +1,17 @@
-<h1>New country</h1>
+<h3>New country</h3>
 
 <%= render "form", country: @country %>
 
 <br>
 
 <div>
-  <%= link_to "Back to countries", countries_path %>
+  <%= link_to "Back to countries", countries_path ,class: "btn btn-secondary" %>
 </div>
+
+
+<style type="text/css">
+	.btn-secondary{
+		margin-left: 0%;
+		margin-top: 10vh;
+	}
+</style>

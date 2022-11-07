@@ -1,15 +1,55 @@
 <p style="color: green"><%= notice %></p>
 
-<h1>Nodes</h1>
-
-<div id="nodes">
+<!-- <h1>Nodes</h1>
+ -->
+<table id="myTable">
+  <tr class="header">
+    <th style="width:20%;">Name</th>
+    <th style="width:20%;">place</th>
+    <th style="width:20%;" colspan="3">Action</th>
+  </tr>
   <% @nodes.each do |node| %>
-    <%= render node %>
-    <p>
-      <%= link_to "Show this node", node %>
-    </p>
+  <tr>
+    <td><%= node.name %></td>
+    <td><%= node&.place&.name %></td>
+    <td><%= link_to "Show", node,class: "btn btn-outline-primary" %></td>
+    <td><%= link_to "Edit",edit_node_path(node),class: "btn btn-outline-success" %></td>
+    <td><%= button_to "Destroy", node, method: :delete,class: "btn btn-outline-danger" %></td>
+  </tr>
   <% end %>
-</div>
+</table><br>
 
-<%= link_to "New node", new_node_path %>
+
+<%= link_to "New node", new_node_path,class: "btn btn-outline-success" %>
 <%= will_paginate @nodes, renderer: BootstrapPagination::Rails %>
+
+
+
+<style>
+* {
+  box-sizing: border-box;
+}/*
+body{
+	background-color: coral;
+}
+*/
+#myTable {
+  border-collapse: collapse;
+  width: 100%;
+  border: 1px solid #ddd;
+  font-size: 18px;
+}
+
+#myTable th, #myTable td {
+  text-align: left;
+  padding: 12px;
+}
+
+#myTable tr {
+  border-bottom: 1px solid #ddd;
+}
+
+#myTable tr.header, #myTable tr:hover {
+  background-color: #f1f1f1;
+}
+</style>

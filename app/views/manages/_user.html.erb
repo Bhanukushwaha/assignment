@@ -1,4 +1,4 @@
-<div class="container">
+
 <h3>User Record</h3>
 <p>
   <strong>First Name:</strong>
@@ -44,12 +44,16 @@
 </p>
 <p>
   <strong>images:</strong>
-  <%= image_tag @user.profiles.last.image_name.url , style: "width: 167px; height: 94px; margin-top: 8px;" %>
+  <% if @user.profiles.present? %>
+  <%= image_tag @user.profiles.last.image_name.url, height: "100", width: "150" rescue nil %>
+  <% else%>
+  <%"gtyuiop"%>
+  <% end %>
  
 <p>
   <strong>active:</strong>
   <%= @user.is_active %>
 </p>
-</div>
+
 
 

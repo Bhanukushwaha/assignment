@@ -1,3 +1,4 @@
+<div class="container">
 <%= form_with(model: node) do |form| %>
   <% if node.errors.any? %>
     <div style="color: red">
@@ -11,17 +12,18 @@
     </div>
   <% end %>
 
-  <div>
-    <%= form.label :name, style: "display: block" %>
-    <%= form.text_field :name %>
-  </div>
+  <div class="form-group">
+    <%= form.label :name, :class=>"col-sm-3 control-label" %>
+    <%= form.text_field :name ,:placeholder => "Enter your node Name" %>
+  </div><br>
 
-  <div>
-    <%= form.label :place_id, style: "display: block" %>
+  <div class="form-group">
+    <%= form.label :place_id, :class=>"col-sm-3 control-label"%>
     <%= form.select :place_id, Place.all.map{|u| [u.name , u.id ]} %>    
-  </div>
-
-  <div>
-    <%= form.submit %>
+  </div><br>
+  
+  <div class="actions">
+    <%= form.submit :class=>"btn btn-success" %>
   </div>
 <% end %>
+</div>

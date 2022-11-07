@@ -1,10 +1,18 @@
 <p style="color: green"><%= notice %></p>
 
-<%= render @country %>
+<div id="<%= dom_id @country %>" class="container">
 
-<div>
-  <%= link_to "Edit this country", edit_country_path(@country) %> |
-  <%= link_to "Back to countries", countries_path %>
+  <p>
+    <strong>name: </strong>
+    <%= @country. name %>
+  </p>
 
-  <%= button_to "Destroy this country", @country, method: :delete %>
 </div>
+
+
+<div class="container">
+  <%= link_to "Edit this country", edit_country_path(@country),class: "btn btn-success" %><br><br>
+  <%= button_to "Destroy country", @country, method: :delete ,class: "btn btn-danger"%><br>
+  <%= link_to "Back to countries", countries_path,class: "btn btn-warning" %>
+</div>
+

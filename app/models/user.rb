@@ -4,7 +4,7 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
-
+  # validates :image, presence: true
   validate :check_date
   belongs_to :company
   belongs_to :role

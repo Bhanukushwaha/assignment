@@ -3,12 +3,16 @@ class CountriesController < ApplicationController
 
   # GET /countries or /countries.json
   def index
-    @countries = Country.paginate(page: params[:page], per_page: 10)
+    @countries = Country.all.paginate(page: params[:page], per_page: 10)
   end
 
   # GET /countries/1 or /countries/1.json
   def show
+    @country = Country.find(params[:id])
   end
+
+
+
 
   # GET /countries/new
   def new
@@ -17,6 +21,8 @@ class CountriesController < ApplicationController
 
   # GET /countries/1/edit
   def edit
+    
+        @country = Country.find(params[:id])
   end
 
   # POST /countries or /countries.json

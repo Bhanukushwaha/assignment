@@ -2,9 +2,8 @@
 
 <%= render @place %>
 
-<div>
-  <%= link_to "Edit this place", edit_place_path(@place) %> |
-  <%= link_to "Back to places", places_path %>
-
-  <%= button_to "Destroy this place", @place, method: :delete %>
+<div class="container">
+  <%= link_to "Edit this place", edit_place_path(@place),class: "btn btn-success" %><br><br>
+  <%= button_to "Destroy place", @place, method: :delete ,class: "btn btn-danger"%><br>
+  <%= link_to "Back to places", places_path ,class: "btn btn-warning"%>  
 </div>

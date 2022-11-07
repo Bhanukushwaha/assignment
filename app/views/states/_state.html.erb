@@ -1,12 +1,14 @@
-<div id="<%= dom_id state %>">
-  <p>
-    <strong>Name:</strong>
+<div id="<%= dom_id state %>" >
+  <p class="form">
+    <strong>Name: </strong>
     <%= state.name %>
+    
   </p>
 
-  <p>
-    <strong>Country:</strong>
+  <p class="form">
+    <strong>Country: </strong>
     <%= state&.country&.name %>
   </p>
 
 </div>
+

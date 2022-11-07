@@ -1,16 +1,45 @@
 <p style="color: green"><%= notice %></p>
-
-<h1>Roles</h1>
-
-<div id="roles">
+<table id="myTable">
+  <tr class="header">
+    <th style="width:20%;">Name</th>
+    <th style="width:20%;" colspan="3">Action</th>
+  </tr>
   <% @roles.each do |role| %>
-    <%= render role %>
-    <p>
-      <%= link_to "Show this role", role %>
-    </p>
+  <tr>
+    <td><%= role.name %></td>
+    <td><%= link_to "Show", role ,class: "btn btn-primary"%></td>
+    <td><%= link_to "Edit", edit_role_path(role) ,class: "btn btn-success"%></td>
+    <td><%= button_to "Destroy",role, method: :delete, class: "btn btn-danger" %></td>
+  </tr>
   <% end %>
-</div>
+</table><br>
 
-<%= link_to "New role", new_role_path %>
+<%= link_to "New role", new_role_path ,class: "btn btn-secondary" %>
 <%= will_paginate @roles, renderer: BootstrapPagination::Rails %>
 
+
+<style>
+* {
+  box-sizing: border-box;
+}
+
+#myTable {
+  border-collapse: collapse;
+  width: 100%;
+  border: 1px solid #ddd;
+  font-size: 18px;
+}
+
+#myTable th, #myTable td {
+  text-align: left;
+  padding: 12px;
+}
+
+#myTable tr {
+  border-bottom: 1px solid #ddd;
+}
+
+#myTable tr.header, #myTable tr:hover {
+  background-color: #f1f1f1;
+}
+</style>

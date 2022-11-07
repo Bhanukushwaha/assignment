@@ -1,16 +1,48 @@
 <p style="color: green"><%= notice %></p>
-
-<h1>Places</h1>
-
-<div id="places">
+<table id="myTable">
+  <tr class="header">
+    <th style="width:20%;">Name</th>
+    <th style="width:20%;">company</th>
+    <th style="width:20%;" colspan="3">Action</th>
+  </tr>
   <% @places.each do |place| %>
-    <%= render place %>
-    <p>
-      <%= link_to "Show this place", place %>
-    </p>
+  <tr>
+    <td><%= place.name %></td>
+    <td><%= place&.company&.name %></td>
+    <td><%= link_to "Show", place,class: "btn btn-primary" %></td>
+    <td><%= link_to "Edit", edit_place_path(place),class: "btn btn-success" %></td>
+    <td><%= button_to "Destroy",place, method: :delete ,class: "btn btn-danger"%></td>
+  </tr>
   <% end %>
-</div>
+</table><br>
 
-<%= link_to "New place", new_place_path %>
+<%= link_to "New place", new_place_path,class: "btn btn-secondary" %>
 <%= will_paginate @places, renderer: BootstrapPagination::Rails %>
 
+
+
+<style>
+* {
+  box-sizing: border-box;
+}
+
+#myTable {
+  border-collapse: collapse;
+  width: 100%;
+  border: 1px solid #ddd;
+  font-size: 18px;
+}
+
+#myTable th, #myTable td {
+  text-align: left;
+  padding: 12px;
+}
+
+#myTable tr {
+  border-bottom: 1px solid #ddd;
+}
+
+#myTable tr.header, #myTable tr:hover {
+  background-color: #f1f1f1;
+}
+</style>

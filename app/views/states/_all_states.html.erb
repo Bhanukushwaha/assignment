@@ -1,5 +1,5 @@
 
-<select id="company_state_id" name="company[state_id]" class="form-control"><option value="">--select state--</option>
+<select id="company_state_id" name="company[state_id]" class="input-md textinput textInput form-control"><option value="">--select state--</option>
 <% @states.each do |state| %>
    <option value="<%= state.id%>"><%= state.name%></option>
 <%end%>

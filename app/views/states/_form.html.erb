@@ -9,18 +9,19 @@
       </ul>
     </div>
   <% end %>
-
-  <div>
-    <%= form.label :name, style: "display: block" %>
-    <%= form.text_field :name %>
-  </div>
-
-  <div>
-    <%= form.label :country_id, style: "display: block" %>
+  <div class="form-group">
+    <%= form.label :name ,:class=>"col-sm-2 control-label" %> 
+    <%= form.text_field :name ,:placeholder => "Enter your state Name"%>
+  </div><br>
+  <div class="form-group">
+    <%= form.label :country_id,:class=>"col-sm-2 control-label"%>
     <%= form.select :country_id, Country.all.map { |c| [c.name, c.id] } %>
+  </div><br>
+  <div class="actions">
+    <%= form.submit  :class=>"btn btn-secondary" %>
   </div>
-
-  <div>
-    <%= form.submit %>
-  </div>
+</div>
 <% end %>
+
+
+
